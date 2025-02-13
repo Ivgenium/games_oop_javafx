@@ -21,6 +21,14 @@ public final class Logic {
     }
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
+        Figure[] currentFigures = Arrays.copyOf(figures, index);
+        for (Cell step : steps) {
+            for (Figure figure : currentFigures) {
+                if (step.equals(figure.position())) {
+                    throw new OccupiedCellException("The cell is occupied.");
+                }
+            }
+        }
         return true;
     }
 
